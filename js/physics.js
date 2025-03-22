@@ -8,13 +8,27 @@ export class PhysicsWorld {
         });
         
         // Set solver iterations for more stable physics
-        this.world.solver.iterations = 10;
+        this.world.solver.iterations = 20; // Increased from 10 for better stability
         
         // Set up collision detection
         this.world.broadphase = new CANNON.SAPBroadphase(this.world);
         
         // Improve performance
         this.world.allowSleep = true;
+
+        // Add default contact material for better overall physics behavior
+        const defaultMaterial = new CANNON.Material('default');
+        const defaultContactMaterial = new CANNON.ContactMaterial(
+            defaultMaterial,
+            defaultMaterial,
+            {
+                friction: 0.3,
+                restitution: 0.2,
+                contactEquationStiffness: 1e6,
+                contactEquationRelaxation: 3
+            }
+        );
+        this.world.defaultContactMaterial = defaultContactMaterial;
     }
     
     update(deltaTime) {
@@ -34,8 +48,8 @@ export class PhysicsWorld {
             mass: 0,
             shape: shape,
             material: new CANNON.Material({
-                friction: 0.7,     // Increased from 0.6 for more grip
-                restitution: 0.05  // Decreased from 0.1 for less bounce
+                friction: 0.5,
+                restitution: 0.3
             })
         });
         

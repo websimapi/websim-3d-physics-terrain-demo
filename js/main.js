@@ -50,8 +50,12 @@ class Game {
             mass: config.physics.ballMass,
             shape: shape,
             position: new CANNON.Vec3(0, 100, 0),
-            linearDamping: 0.7,
-            angularDamping: 0.7
+            linearDamping: 0.5, 
+            angularDamping: 0.5, 
+            material: new CANNON.Material({
+                friction: 0.3,
+                restitution: 0.2 
+            })
         });
         this.physics.world.addBody(this.playerBody);
         
