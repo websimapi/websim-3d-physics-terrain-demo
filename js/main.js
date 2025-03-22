@@ -19,7 +19,7 @@ class Game {
         // Initialize terrain manager
         this.terrainManager = new TerrainManager(
             this.renderer.scene, 
-            this.physics.world,
+            this.physics,
             this.playerBody.position
         );
         
@@ -122,4 +122,3 @@ class Game {
 window.addEventListener('DOMContentLoaded', () => {
     const game = new Game();
 });
-
