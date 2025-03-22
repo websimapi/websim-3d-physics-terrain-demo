@@ -34,8 +34,8 @@ export class PhysicsWorld {
             mass: 0,
             shape: shape,
             material: new CANNON.Material({
-                friction: 0.6,     // Increased from 0.5 for more grip
-                restitution: 0.1   // Decreased from 0.3 for less bounce
+                friction: 0.7,     // Increased from 0.6 for more grip
+                restitution: 0.05  // Decreased from 0.1 for less bounce
             })
         });
         

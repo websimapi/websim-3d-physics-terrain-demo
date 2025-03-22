@@ -14,19 +14,19 @@ export default {
     
     // Physics settings
     physics: {
-        gravity: -20, // Increased from -9.82 for stronger gravity
+        gravity: -30, // Increased from -20 for even stronger gravity
         timeStep: 1/60,
         maxSubSteps: 3,
-        ballRadius: 5,
-        ballMass: 15  // Increased from 5 for more weight
+        ballRadius: 2, // Reduced from 5 to make ball much smaller
+        ballMass: 15
     },
     
     // Controls
     controls: {
         ballSpeed: 20,
         cameraSpeed: 1,
-        cameraHeight: 80,
-        cameraDistance: 100
+        cameraHeight: 25, // Reduced from 80 for closer camera
+        cameraDistance: 40 // Reduced from 100 for closer camera
     },
     
     // Render settings
