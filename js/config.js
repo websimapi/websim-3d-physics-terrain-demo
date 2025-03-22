@@ -18,7 +18,7 @@ export default {
         timeStep: 1/60,
         maxSubSteps: 3,
         ballRadius: 5,
-        ballMass: 5
+        ballMass: 15  // Increased from 5 for more weight
     },
     
     // Controls
