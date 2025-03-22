@@ -94,12 +94,23 @@ export class TerrainManager {
             let elevation = 0;
             let amplitude = config.terrain.amplitude;
             let frequency = config.terrain.noiseScale;
+            let weight = 1.0;
+            let weightSum = 0;
             
             for (let o = 0; o < config.terrain.noiseOctaves; o++) {
-                elevation += this.noise(x3 * frequency, z3 * frequency) * amplitude;
+                // Use weighted noise for smoother blending between octaves
+                elevation += this.noise(x3 * frequency, z3 * frequency) * amplitude * weight;
+                weightSum += weight;
                 amplitude *= 0.5;
                 frequency *= 2;
+                weight *= 0.75;
             }
+            
+            // Normalize based on weight sum
+            elevation /= weightSum;
+            
+            // Apply smoothing function for more rounded terrain
+            elevation = Math.pow(Math.abs(elevation), 0.8) * Math.sign(elevation);
             
             // Set the new Y position
             positionAttr.setY(i, elevation);
@@ -167,4 +178,3 @@ export class TerrainManager {
         this.chunks.delete(key);
     }
 }
-
